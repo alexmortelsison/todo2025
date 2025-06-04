@@ -31,16 +31,13 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      backgroundColor: Colors.blue[100],
       body: ListView.builder(
           itemCount: toDoList.length,
           itemBuilder: (context, index) {
             return TodoTile(
               taskName: toDoList[index][0],
               taskCompleted: toDoList[index][1],
-              onChanged: (value) => {
-                checkBoxChanged(value ?? false, index),
-              },
+              onChanged: (value) => checkBoxChanged(value ?? false, index),
             );
           }),
     );
