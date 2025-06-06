@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:todo2025/util/my_button.dart';
+import 'package:todo2025/utils/my_button.dart';
 
 class DialogBox extends StatelessWidget {
-  final controller;
-  VoidCallback onSave;
-  VoidCallback onCancel;
-  DialogBox(
+  final TextEditingController controller;
+  final VoidCallback onSave;
+  final VoidCallback onCancel;
+  const DialogBox(
       {super.key,
       required this.controller,
       required this.onSave,
@@ -14,7 +14,7 @@ class DialogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Colors.blue[200],
+      backgroundColor: Colors.blue,
       content: SizedBox(
         height: 200,
         child: Column(
@@ -23,7 +23,7 @@ class DialogBox extends StatelessWidget {
             TextField(
               controller: controller,
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(), hintText: "Add a new task"),
+                  border: OutlineInputBorder(), hintText: "Add a new task."),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -32,7 +32,7 @@ class DialogBox extends StatelessWidget {
                 const SizedBox(
                   width: 4,
                 ),
-                MyButton(text: "Cancel", onPressed: onCancel),
+                MyButton(text: "Cancel", onPressed: onCancel)
               ],
             )
           ],

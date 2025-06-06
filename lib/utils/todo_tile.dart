@@ -1,22 +1,23 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class TodoTile extends StatelessWidget {
   final String taskName;
   final bool taskCompleted;
   final Function(bool?)? onChanged;
-  Function(BuildContext)? deleteFunction;
-  TodoTile({
-    super.key,
-    required this.taskName,
-    required this.taskCompleted,
-    required this.onChanged,
-    required this.deleteFunction,
-  });
+  final Function(BuildContext)? deleteFunction;
+  const TodoTile(
+      {super.key,
+      required this.taskName,
+      required this.taskCompleted,
+      required this.onChanged,
+      required this.deleteFunction});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 25, right: 25, top: 25),
+      padding: const EdgeInsets.fromLTRB(25, 25, 25, 0),
       child: Dismissible(
         key: Key(taskName),
         direction: DismissDirection.endToStart,
@@ -24,19 +25,21 @@ class TodoTile extends StatelessWidget {
           deleteFunction?.call(context);
         },
         child: Container(
-          padding: const EdgeInsets.all(25),
           decoration: BoxDecoration(
-            color: Colors.blue[200],
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(12),
           ),
+          padding: const EdgeInsets.all(25),
           child: Row(
             children: [
               Checkbox(value: taskCompleted, onChanged: onChanged),
               Text(
                 taskName,
                 style: TextStyle(
-                    decoration: taskCompleted
-                        ? TextDecoration.lineThrough
-                        : TextDecoration.none),
+                  decoration: taskCompleted
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
+                ),
               ),
             ],
           ),
